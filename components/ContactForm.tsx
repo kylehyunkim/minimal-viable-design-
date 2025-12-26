@@ -419,9 +419,8 @@ const ContactForm: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="mt-16 pt-12 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between text-gray-400 text-xs tracking-widest uppercase">
+        <div className="mt-16 pt-12 border-t border-gray-200 flex items-center justify-center text-gray-400 text-xs tracking-widest uppercase">
           <p>ScaleFlight · AI solutions for service businesses</p>
-          <p>hello@scaleflight.ai</p>
         </div>
       </div>
     </section>
