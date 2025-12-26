@@ -38,9 +38,10 @@ const Navbar: React.FC = () => {
 
       <a
         href="#contact"
-        className="px-6 py-2 bg-black text-white text-xs font-medium uppercase tracking-widest rounded-full hover:bg-gray-800 transition-colors"
+        className="px-4 py-2 md:px-6 bg-black text-white text-[10px] md:text-xs font-medium uppercase tracking-wider md:tracking-widest rounded-full hover:bg-gray-800 transition-colors"
       >
-        Free Strategy Call
+        Free Call
+        <span className="hidden md:inline"> Strategy</span>
       </a>
     </motion.nav>
   );
