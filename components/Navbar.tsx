@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     >
       <a href="#hero" className="flex items-center gap-2">
         <img
-          src="/logo/logo_clean.jpg"
+          src="/logo/logo_clean-Photoroom.png"
           alt="ScaleFlight Logo"
           className="h-12 md:h-16 w-auto"
         />

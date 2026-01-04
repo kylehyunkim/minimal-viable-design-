@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ onPrivacyClick, onTermsClick }) => {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <img
-            src="/logo/logo_clean.jpg"
+            src="/logo/logo_clean-Photoroom.png"
             alt="ScaleFlight Logo"
             className="h-8 w-auto"
           />
