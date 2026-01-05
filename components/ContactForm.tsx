@@ -72,8 +72,9 @@ const ContactForm: React.FC = () => {
     const submissionData = new FormData();
     const currentDate = new Date().toLocaleString();
 
-    // EXHAUSTIVE DATE VARIATIONS
+    // EXHAUSTIVE DATE VARIATIONS (including potential trailing spaces)
     submissionData.append('Date', currentDate);
+    submissionData.append('Date ', currentDate);
     submissionData.append('date', currentDate);
     submissionData.append('Timestamp', currentDate);
     submissionData.append('timestamp', currentDate);
@@ -82,19 +83,23 @@ const ContactForm: React.FC = () => {
 
     // EXHAUSTIVE NAME VARIATIONS
     submissionData.append('Name', formData.name);
+    submissionData.append('Name ', formData.name); // Common typo: "Name "
     submissionData.append('name', formData.name);
     submissionData.append('Full Name', formData.name);
     submissionData.append('fullname', formData.name);
     submissionData.append('Contact Name', formData.name);
 
     submissionData.append('Email', formData.email);
+    submissionData.append('Email ', formData.email);
     submissionData.append('email', formData.email);
 
     submissionData.append('Phone', formData.phone);
+    submissionData.append('Phone ', formData.phone);
     submissionData.append('phone', formData.phone);
 
     // EXHAUSTIVE BUSINESS VARIATIONS
     submissionData.append('Business Name', formData.businessName);
+    submissionData.append('Business Name ', formData.businessName);
     submissionData.append('business name', formData.businessName);
     submissionData.append('Business', formData.businessName);
     submissionData.append('Company', formData.businessName);
@@ -107,6 +112,9 @@ const ContactForm: React.FC = () => {
     submissionData.append('Challenge', formData.biggestChallenge);
     submissionData.append('Timeframe', formData.timeframe);
     submissionData.append('Info', formData.additionalInfo);
+
+    // Debugging: also send a raw JSON dump to the 'Info' column if possible, or a new 'Debug' column if they add it
+    submissionData.append('RawData', JSON.stringify(formData));
 
     try {
       await fetch(scriptURL, {
