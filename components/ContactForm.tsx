@@ -72,13 +72,20 @@ const ContactForm: React.FC = () => {
     const submissionData = new FormData();
     const currentDate = new Date().toLocaleString();
 
-    // Send both capitalized and lowercase versions to match common Sheet header variations
+    // EXHAUSTIVE DATE VARIATIONS
     submissionData.append('Date', currentDate);
     submissionData.append('date', currentDate);
+    submissionData.append('Timestamp', currentDate);
+    submissionData.append('timestamp', currentDate);
+    submissionData.append('Time', currentDate);
+    submissionData.append('Submitted At', currentDate);
 
+    // EXHAUSTIVE NAME VARIATIONS
     submissionData.append('Name', formData.name);
     submissionData.append('name', formData.name);
-    submissionData.append('Full Name', formData.name); // Fail-safe
+    submissionData.append('Full Name', formData.name);
+    submissionData.append('fullname', formData.name);
+    submissionData.append('Contact Name', formData.name);
 
     submissionData.append('Email', formData.email);
     submissionData.append('email', formData.email);
@@ -86,10 +93,13 @@ const ContactForm: React.FC = () => {
     submissionData.append('Phone', formData.phone);
     submissionData.append('phone', formData.phone);
 
+    // EXHAUSTIVE BUSINESS VARIATIONS
     submissionData.append('Business Name', formData.businessName);
     submissionData.append('business name', formData.businessName);
-    submissionData.append('Business', formData.businessName); // Fail-safe
-    submissionData.append('Company', formData.businessName); // Fail-safe
+    submissionData.append('Business', formData.businessName);
+    submissionData.append('Company', formData.businessName);
+    submissionData.append('Organization', formData.businessName);
+    submissionData.append('company', formData.businessName);
 
     submissionData.append('Business Type', formData.businessType);
     submissionData.append('Revenue', formData.revenueRange);
