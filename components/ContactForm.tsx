@@ -70,8 +70,18 @@ const ContactForm: React.FC = () => {
 
     // Map state keys to Google Sheet keys
     const submissionData = new FormData();
+    const currentDate = new Date().toLocaleString();
+
+    // Send both capitalized and lowercase versions to match common Sheet header variations
+    submissionData.append('Date', currentDate);
+    submissionData.append('date', currentDate);
+
     submissionData.append('Name', formData.name);
+    submissionData.append('name', formData.name);
+
     submissionData.append('Email', formData.email);
+    submissionData.append('email', formData.email);
+
     submissionData.append('Phone', formData.phone);
     submissionData.append('Business Name', formData.businessName);
     submissionData.append('Business Type', formData.businessType);
