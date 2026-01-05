@@ -44,22 +44,14 @@ const reasons = [
 const Mission: React.FC = () => {
   return (
     <section id="why-us" className="relative py-24 px-6 bg-[#080810] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+      {/* Background gradient effects - static for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 60%)',
             filter: 'blur(100px)',
+            transform: 'translate(-50%, -50%) translateZ(0)',
           }}
         />
         {/* Subtle grid */}

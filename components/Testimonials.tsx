@@ -36,39 +36,22 @@ const testimonials = [
 const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" className="relative py-24 px-6 bg-[#0a0a0f] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+      {/* Background gradient effects - static for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
           className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
             filter: 'blur(80px)',
+            transform: 'translateZ(0)',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3
-          }}
+        <div
           className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 70%)',
             filter: 'blur(70px)',
+            transform: 'translateZ(0)',
           }}
         />
       </div>

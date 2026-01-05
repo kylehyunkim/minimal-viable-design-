@@ -5,84 +5,44 @@ import { motion } from 'framer-motion';
 const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden bg-[#0a0a0f]">
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Static gradient orbs - optimized for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Main blue gradient orb */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+        <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(59, 130, 246, 0.15) 40%, transparent 70%)',
             filter: 'blur(60px)',
+            transform: 'translate(-50%, 0) translateZ(0)',
           }}
         />
         {/* Secondary cyan orb */}
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -40, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
+        <div
           className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(34, 211, 238, 0.25) 0%, rgba(6, 182, 212, 0.1) 50%, transparent 70%)',
             filter: 'blur(50px)',
+            transform: 'translateZ(0)',
           }}
         />
         {/* Accent orb */}
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, 20, 0],
-            y: [0, 40, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
+        <div
           className="absolute bottom-1/4 left-1/3 w-[350px] h-[350px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(79, 70, 229, 0.1) 50%, transparent 70%)',
             filter: 'blur(45px)',
+            transform: 'translateZ(0)',
           }}
         />
-        {/* Fizzy particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
+        {/* Fizzy particles - reduced for performance */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <div
               key={i}
-              className="absolute w-1 h-1 rounded-full bg-cyan-400/40"
+              className="absolute w-1 h-1 rounded-full bg-cyan-400/30 animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut"
+                left: `${15 + i * 10}%`,
+                top: `${20 + (i % 3) * 25}%`,
               }}
             />
           ))}

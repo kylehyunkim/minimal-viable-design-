@@ -156,39 +156,22 @@ const ContactForm: React.FC = () => {
 
   return (
     <section id="contact" className="relative py-24 px-6 bg-[#080810] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, -3, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+      {/* Background gradient effects - static for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 60%)',
             filter: 'blur(100px)',
+            transform: 'translateX(-50%) translateZ(0)',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
+        <div
           className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%)',
             filter: 'blur(80px)',
+            transform: 'translateZ(0)',
           }}
         />
       </div>

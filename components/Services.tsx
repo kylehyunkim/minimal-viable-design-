@@ -76,39 +76,22 @@ const solutions = [
 const Services: React.FC = () => {
   return (
     <section id="solutions" className="relative py-24 px-6 bg-[#0a0a0f] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, -20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+      {/* Background gradient effects - static for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
           className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%)',
             filter: 'blur(80px)',
+            transform: 'translateZ(0)',
           }}
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
+        <div
           className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%)',
             filter: 'blur(60px)',
+            transform: 'translateZ(0)',
           }}
         />
       </div>
