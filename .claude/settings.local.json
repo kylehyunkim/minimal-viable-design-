@@ -3,7 +3,11 @@
     "allow": [
       "Bash(npm run dev:*)",
       "Bash(git push)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(copy:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nRebrand to Operational AI Consultant with dark theme redesign\n\n- Update hero section with new headline \"Stop Hiring. Start Automating.\"\n- Apply dark fluid aesthetic with animated gradient orbs across all sections\n- Restructure services into 4 operational AI pillars\n- Add Privacy Policy and Terms & Conditions with modal popups\n- Add footer with policy links\n- Update logo and navbar styling\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)"
     ]
   }
 }

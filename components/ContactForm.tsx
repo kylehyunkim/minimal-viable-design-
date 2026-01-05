@@ -59,24 +59,57 @@ const ContactForm: React.FC = () => {
   });
 
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const totalSteps = 3;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you! We'll review your information and reach out within 24 hours to schedule a call.");
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      businessName: '',
-      businessType: '',
-      revenueRange: '',
-      biggestChallenge: '',
-      currentOperations: '',
-      timeframe: '',
-      additionalInfo: ''
-    });
-    setStep(1);
+    setIsSubmitting(true);
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwjn975s95ate4AWbbpzhi70b80NjQVq0NBFxMvdju0EBSfbbzLkzUlH4c69VNLvW3dsQ/exec';
+
+    // Map state keys to Google Sheet keys
+    const submissionData = new FormData();
+    submissionData.append('Name', formData.name);
+    submissionData.append('Email', formData.email);
+    submissionData.append('Phone', formData.phone);
+    submissionData.append('Business Name', formData.businessName);
+    submissionData.append('Business Type', formData.businessType);
+    submissionData.append('Revenue', formData.revenueRange);
+    submissionData.append('Operations', formData.currentOperations);
+    submissionData.append('Challenge', formData.biggestChallenge);
+    submissionData.append('Timeframe', formData.timeframe);
+    submissionData.append('Info', formData.additionalInfo);
+
+    try {
+      await fetch(scriptURL, {
+        method: 'POST',
+        body: submissionData,
+        mode: 'no-cors' // Important for Google Apps Script to not block the request
+      });
+
+      // We assume success if no-cors error didn't get thrown (we can't read response in no-cors)
+      alert("Thank you! Your information has been received. We'll be in touch within 24 hours.");
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        businessName: '',
+        businessType: '',
+        revenueRange: '',
+        biggestChallenge: '',
+        currentOperations: '',
+        timeframe: '',
+        additionalInfo: ''
+      });
+      setStep(1);
+    } catch (error) {
+      console.error('Error!', error);
+      alert('Something went wrong. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const nextStep = () => setStep(s => Math.min(s + 1, totalSteps));
@@ -237,8 +270,8 @@ const ContactForm: React.FC = () => {
                     <label
                       key={type}
                       className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${formData.businessType === type
-                          ? 'border-cyan-400/50 bg-cyan-400/10'
-                          : 'border-white/10 hover:border-white/20'
+                        ? 'border-cyan-400/50 bg-cyan-400/10'
+                        : 'border-white/10 hover:border-white/20'
                         }`}
                     >
                       <input
@@ -267,8 +300,8 @@ const ContactForm: React.FC = () => {
                     <label
                       key={range}
                       className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${formData.revenueRange === range
-                          ? 'border-cyan-400/50 bg-cyan-400/10'
-                          : 'border-white/10 hover:border-white/20'
+                        ? 'border-cyan-400/50 bg-cyan-400/10'
+                        : 'border-white/10 hover:border-white/20'
                         }`}
                     >
                       <input
@@ -322,8 +355,8 @@ const ContactForm: React.FC = () => {
                     <label
                       key={challenge}
                       className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${formData.biggestChallenge === challenge
-                          ? 'border-cyan-400/50 bg-cyan-400/10'
-                          : 'border-white/10 hover:border-white/20'
+                        ? 'border-cyan-400/50 bg-cyan-400/10'
+                        : 'border-white/10 hover:border-white/20'
                         }`}
                     >
                       <input
@@ -351,8 +384,8 @@ const ContactForm: React.FC = () => {
                     <label
                       key={time}
                       className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all ${formData.timeframe === time
-                          ? 'border-cyan-400/50 bg-cyan-400/10'
-                          : 'border-white/10 hover:border-white/20'
+                        ? 'border-cyan-400/50 bg-cyan-400/10'
+                        : 'border-white/10 hover:border-white/20'
                         }`}
                     >
                       <input
@@ -418,10 +451,10 @@ const ContactForm: React.FC = () => {
             ) : (
               <button
                 type="submit"
-                disabled={!isStep3Valid}
+                disabled={!isStep3Valid || isSubmitting}
                 className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full text-sm font-medium uppercase tracking-widest hover:from-cyan-400 hover:to-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                Request Free Strategy Call
+                {isSubmitting ? 'Sending...' : 'Request Free Strategy Call'}
               </button>
             )}
           </div>
