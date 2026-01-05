@@ -78,12 +78,19 @@ const ContactForm: React.FC = () => {
 
     submissionData.append('Name', formData.name);
     submissionData.append('name', formData.name);
+    submissionData.append('Full Name', formData.name); // Fail-safe
 
     submissionData.append('Email', formData.email);
     submissionData.append('email', formData.email);
 
     submissionData.append('Phone', formData.phone);
+    submissionData.append('phone', formData.phone);
+
     submissionData.append('Business Name', formData.businessName);
+    submissionData.append('business name', formData.businessName);
+    submissionData.append('Business', formData.businessName); // Fail-safe
+    submissionData.append('Company', formData.businessName); // Fail-safe
+
     submissionData.append('Business Type', formData.businessType);
     submissionData.append('Revenue', formData.revenueRange);
     submissionData.append('Operations', formData.currentOperations);
@@ -216,6 +223,9 @@ const ContactForm: React.FC = () => {
                   <label className="text-xs uppercase tracking-widest text-white/40 font-medium">Your Name *</label>
                   <input
                     type="text"
+                    name="name"
+                    id="name"
+                    autoComplete="name"
                     required
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
@@ -227,6 +237,9 @@ const ContactForm: React.FC = () => {
                   <label className="text-xs uppercase tracking-widest text-white/40 font-medium">Business Name *</label>
                   <input
                     type="text"
+                    name="businessName"
+                    id="businessName"
+                    autoComplete="organization"
                     required
                     value={formData.businessName}
                     onChange={e => setFormData({ ...formData, businessName: e.target.value })}
@@ -241,6 +254,9 @@ const ContactForm: React.FC = () => {
                   <label className="text-xs uppercase tracking-widest text-white/40 font-medium">Email *</label>
                   <input
                     type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
                     required
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
@@ -252,6 +268,9 @@ const ContactForm: React.FC = () => {
                   <label className="text-xs uppercase tracking-widest text-white/40 font-medium">Phone *</label>
                   <input
                     type="tel"
+                    name="phone"
+                    id="phone"
+                    autoComplete="tel"
                     required
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
